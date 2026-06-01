@@ -1,0 +1,20 @@
+name: Feature request
+description: Suggest a new audit, report, or automation feature.
+title: "feature: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What maintainer workflow should this improve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should Maintainer Compass do?
+    validations:
+      required: true
+
