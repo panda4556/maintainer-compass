@@ -4,5 +4,4 @@ from .audit import AuditReport, CheckResult, audit_repository
 
 __all__ = ["AuditReport", "CheckResult", "audit_repository"]
 
-__version__ = "0.1.0"
-
+__version__ = "0.2.0"

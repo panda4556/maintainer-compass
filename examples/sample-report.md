@@ -2,20 +2,19 @@
 
 Repository: `/example/project`
 
-Score: 78/100
+Score: 86/100
 
 ## Category scores
 
 | Category | Score |
 | --- | ---: |
-| Onboarding | 31/38 |
-| Governance | 12/18 |
-| Automation | 22/28 |
-| Release readiness | 13/16 |
+| Onboarding | 34/37 |
+| Governance | 23/26 |
+| Automation | 22/24 |
+| Release readiness | 15/15 |
 
 ## Top recommendations
 
-1. Add SECURITY.md so users know how to report vulnerabilities.
-2. Add a pull request template to reduce review back-and-forth.
-3. Add CHANGELOG.md so users can understand release impact.
-
+1. Add SUPPORT.md so users know where to ask questions.
+2. Add ROADMAP.md so contributors can choose useful work.
+3. Add a stricter CI threshold with `--fail-under`.

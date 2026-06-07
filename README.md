@@ -1,13 +1,17 @@
 # Maintainer Compass
 
 [![CI](https://github.com/panda4556/maintainer-compass/actions/workflows/ci.yml/badge.svg)](https://github.com/panda4556/maintainer-compass/actions/workflows/ci.yml)
-[![PyPI](https://img.shields.io/pypi/v/maintainer-compass.svg)](https://pypi.org/project/maintainer-compass/)
+[![GitHub release](https://img.shields.io/github/v/release/panda4556/maintainer-compass?include_prereleases)](https://github.com/panda4556/maintainer-compass/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Maintainer Compass is a zero-dependency CLI that audits an open-source
 repository for maintenance readiness. It turns common maintainer work into a
 small, repeatable report: onboarding files, governance docs, CI, tests, release
 signals, and contributor workflows.
+
+It is built for maintainers who want a practical answer to: "What should we fix
+next so this repository is easier to contribute to, safer to maintain, and more
+ready for releases?"
 
 The project is designed for small and mid-sized OSS maintainers who want a
 clear, automated way to answer:
@@ -28,6 +32,10 @@ README、许可证、贡献指南、安全策略、Issue/PR 模板、CI、测试
 仓库维护基础设施，也可以把它放进 GitHub Actions，定期生成项目健康报告。
 它的目标不是给项目“打分羞辱”，而是指出下一步最值得补齐的维护工作。
 
+这个仓库也会作为 Claude for OSS 申请项目持续维护。未来的 AI 功能会保持
+可选、透明和安全：核心扫描仍然本地运行，AI 只用于帮助维护者整理 issue、
+生成发布说明、改写建议和减少重复 triage 工作。
+
 ## Features
 
 - Local repository audit with no network required.
@@ -36,6 +44,8 @@ README、许可证、贡献指南、安全策略、Issue/PR 模板、CI、测试
 - Weighted score across onboarding, governance, automation, and release
   readiness.
 - Actionable recommendations instead of vague pass/fail messages.
+- CI-friendly quality gate with `--fail-under`.
+- Maintainer-focused docs for support, triage, releases, and roadmap planning.
 - Standard library only. No runtime dependencies.
 
 ## Quick start
@@ -58,6 +68,18 @@ Generate JSON for automation:
 
 ```bash
 python -m maintainer_compass audit . --format json
+```
+
+Fail CI if a repository falls below a score threshold:
+
+```bash
+python -m maintainer_compass audit . --fail-under 80
+```
+
+Print the installed version:
+
+```bash
+python -m maintainer_compass --version
 ```
 
 ## Example output
@@ -103,9 +125,10 @@ jobs:
 Maintainer Compass looks for practical OSS maintenance signals:
 
 - README, license, contribution guide, security policy, code of conduct.
-- Issue templates, pull request template, support or funding files.
+- Support policy, maintainer guide, issue label taxonomy, issue templates,
+  pull request template.
 - CI workflows, dependency automation, tests, package metadata.
-- Changelog, docs, examples, release and version files.
+- Changelog, release workflow, docs, examples, roadmap, release and version files.
 - Language-specific signals for Python, Node.js, Rust, Go, Java, and .NET.
 
 The score is not meant to shame a project. It is a map for the next few
@@ -113,11 +136,19 @@ maintenance improvements.
 
 ## Roadmap
 
-- Comment reports directly on pull requests.
-- Produce suggested issue labels from audit results.
-- Add optional OpenAI-powered issue triage summaries for maintainers who opt in.
-- Track score history over time.
-- Export SARIF for repository health checks.
+See [ROADMAP.md](ROADMAP.md) for planned work, including SARIF export, score
+history, ecosystem-specific checks, and optional AI-assisted maintainer
+workflows.
+
+## Documentation
+
+- [Usage guide](docs/usage.md)
+- [Scoring model](docs/scoring.md)
+- [AI-assisted maintainer workflows](docs/ai-maintainer-workflows.md)
+- [Security design notes](docs/security-design.md)
+- [Claude for OSS application notes](docs/claude-for-oss-application.md)
+- [Maintainer guide](MAINTAINERS.md)
+- [Support policy](SUPPORT.md)
 
 ## Contributing
 

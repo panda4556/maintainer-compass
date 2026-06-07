@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "maintainer-compass"
-version = "0.1.0"
+version = "0.2.0"
 description = "A zero-dependency OSS maintenance health checker for maintainers and contributors."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -37,10 +37,11 @@ dependencies = []
 [project.urls]
 Homepage = "https://github.com/panda4556/maintainer-compass"
 Issues = "https://github.com/panda4556/maintainer-compass/issues"
+Changelog = "https://github.com/panda4556/maintainer-compass/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/panda4556/maintainer-compass#readme"
 
 [project.scripts]
 maintainer-compass = "maintainer_compass.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-

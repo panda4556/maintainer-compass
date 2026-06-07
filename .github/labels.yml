@@ -1,0 +1,24 @@
+- name: bug
+  color: d73a4a
+  description: Something is not working as expected.
+- name: enhancement
+  color: a2eeef
+  description: New feature or improvement.
+- name: documentation
+  color: 0075ca
+  description: Documentation improvements.
+- name: scoring
+  color: 5319e7
+  description: Audit scoring model or check behavior.
+- name: ci
+  color: 1d76db
+  description: Continuous integration or release workflow.
+- name: good first issue
+  color: 7057ff
+  description: Focused task suitable for new contributors.
+- name: needs-triage
+  color: fbca04
+  description: Needs maintainer review.
+- name: claude-for-oss
+  color: c5def5
+  description: Work related to OSS maintainer automation and application notes.
