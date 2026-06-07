@@ -133,7 +133,8 @@ def _build_checks(root: Path) -> list[CheckResult]:
             title="Issue templates",
             category="Governance",
             weight=5,
-            passed=_has_any(root, [".github/ISSUE_TEMPLATE"]) or bool(list((root / ".github").glob("ISSUE_TEMPLATE*"))),
+            passed=_directory_has_files(root, ".github/ISSUE_TEMPLATE")
+            or _has_any(root, [".github/ISSUE_TEMPLATE.md", "ISSUE_TEMPLATE.md"]),
             detail="Issue templates reduce triage time and collect reproducible details.",
             recommendation="Add bug and feature request templates under .github/ISSUE_TEMPLATE.",
         ),
@@ -153,7 +154,8 @@ def _build_checks(root: Path) -> list[CheckResult]:
             title="Continuous integration",
             category="Automation",
             weight=10,
-            passed=_has_any(root, [".github/workflows"]) or _has_any(root, [".gitlab-ci.yml", ".circleci/config.yml"]),
+            passed=_directory_has_files(root, ".github/workflows", suffixes=(".yml", ".yaml"))
+            or _has_any(root, [".gitlab-ci.yml", ".circleci/config.yml"]),
             detail="CI catches regressions before maintainers review or release changes.",
             recommendation="Add a CI workflow that runs tests on pull requests.",
         ),
@@ -203,7 +205,7 @@ def _build_checks(root: Path) -> list[CheckResult]:
             title="Documentation directory",
             category="Onboarding",
             weight=4,
-            passed=_has_any(root, ["docs"]),
+            passed=_directory_has_files(root, "docs"),
             detail="A docs directory gives longer guidance a stable home.",
             recommendation="Add docs/ for deeper usage, architecture, or maintainer notes.",
         ),
@@ -213,7 +215,7 @@ def _build_checks(root: Path) -> list[CheckResult]:
             title="Examples",
             category="Onboarding",
             weight=3,
-            passed=_has_any(root, ["examples"]),
+            passed=_directory_has_files(root, "examples"),
             detail="Examples help users succeed without maintainer intervention.",
             recommendation="Add examples/ with realistic usage samples.",
         ),
@@ -269,27 +271,41 @@ def _has_any(root: Path, candidates: Iterable[str]) -> bool:
 def _exists(root: Path, candidate: str) -> bool:
     if "*" in candidate:
         return any(root.glob(candidate))
+    return _candidate_path(root, candidate) is not None
+
+
+def _candidate_path(root: Path, candidate: str) -> Path | None:
     path = root / candidate
     if path.exists():
-        return True
-    return _case_insensitive_exists(root, candidate)
+        return path
+    return _case_insensitive_path(root, candidate)
 
 
-def _case_insensitive_exists(root: Path, candidate: str) -> bool:
+def _case_insensitive_path(root: Path, candidate: str) -> Path | None:
     current = root
     for part in Path(candidate).parts:
         if not current.is_dir():
-            return False
+            return None
         matches = [child for child in current.iterdir() if child.name.lower() == part.lower()]
         if not matches:
-            return False
+            return None
         current = matches[0]
-    return True
+    return current
+
+
+def _directory_has_files(root: Path, candidate: str, *, suffixes: tuple[str, ...] | None = None) -> bool:
+    directory = _candidate_path(root, candidate)
+    if directory is None or not directory.is_dir():
+        return False
+    files = (path for path in directory.rglob("*") if path.is_file())
+    if suffixes is None:
+        return any(files)
+    normalized_suffixes = tuple(suffix.lower() for suffix in suffixes)
+    return any(path.name.lower().endswith(normalized_suffixes) for path in files)
 
 
 def _has_tests(root: Path) -> bool:
-    if _has_any(root, ["tests", "test", "__tests__"]):
+    if any(_directory_has_files(root, candidate) for candidate in ["tests", "test", "__tests__"]):
         return True
     patterns = ["test_*.py", "*_test.py", "*.test.js", "*.spec.js", "*Test.java", "*Tests.cs"]
     return any(next(root.rglob(pattern), None) is not None for pattern in patterns)
-

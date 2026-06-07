@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 import tempfile
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
 
 from maintainer_compass.cli import main
@@ -28,11 +30,13 @@ class CliTests(unittest.TestCase):
             root = Path(temp)
             (root / "README.md").write_text("# Example\n", encoding="utf-8")
 
-            code = main([str(root), "--format", "json"])
+            stdout = StringIO()
+            with redirect_stdout(stdout):
+                code = main([str(root), "--format", "json"])
 
         self.assertEqual(code, 0)
+        self.assertIn('"score"', stdout.getvalue())
 
 
 if __name__ == "__main__":
     unittest.main()
-

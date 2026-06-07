@@ -1,5 +1,9 @@
 # Maintainer Compass
 
+[![CI](https://github.com/panda4556/maintainer-compass/actions/workflows/ci.yml/badge.svg)](https://github.com/panda4556/maintainer-compass/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/maintainer-compass.svg)](https://pypi.org/project/maintainer-compass/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Maintainer Compass is a zero-dependency CLI that audits an open-source
 repository for maintenance readiness. It turns common maintainer work into a
 small, repeatable report: onboarding files, governance docs, CI, tests, release
@@ -12,6 +16,17 @@ clear, automated way to answer:
 - Are maintenance expectations visible?
 - Do pull requests have enough automation around them?
 - What should the maintainer fix first?
+
+## 中文说明
+
+Maintainer Compass 是一个零运行时依赖的开源项目维护健康度检查工具。
+它会扫描本地仓库，并生成 Markdown 或 JSON 报告，帮助维护者快速了解
+README、许可证、贡献指南、安全策略、Issue/PR 模板、CI、测试、文档、
+示例和发布准备情况。
+
+这个项目适合个人维护者、小型开源团队和贡献者使用：你可以在提交前检查
+仓库维护基础设施，也可以把它放进 GitHub Actions，定期生成项目健康报告。
+它的目标不是给项目“打分羞辱”，而是指出下一步最值得补齐的维护工作。
 
 ## Features
 
@@ -113,3 +128,6 @@ before opening a pull request.
 
 MIT. See [LICENSE](LICENSE).
 
+## Downloads
+
+[![GitHub downloads](https://img.shields.io/github/downloads/panda4556/maintainer-compass/total.svg?label=GitHub%20downloads)](https://github.com/panda4556/maintainer-compass/releases)
