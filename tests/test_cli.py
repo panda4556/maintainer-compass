@@ -25,6 +25,20 @@ class CliTests(unittest.TestCase):
         self.assertIn("score", payload)
         self.assertEqual(payload["path"], str(root.resolve()))
 
+    def test_writes_sarif_report(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            output = root / "report.sarif"
+
+            code = main(["audit", str(root), "--format", "sarif", "--output", str(output)])
+
+            payload = json.loads(output.read_text(encoding="utf-8"))
+
+        self.assertEqual(code, 0)
+        self.assertEqual(payload["version"], "2.1.0")
+        self.assertEqual(payload["runs"][0]["tool"]["driver"]["name"], "Maintainer Compass")
+        self.assertGreater(len(payload["runs"][0]["results"]), 0)
+
     def test_default_command_is_audit(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
@@ -64,7 +78,7 @@ class CliTests(unittest.TestCase):
             main(["--version"])
 
         self.assertEqual(raised.exception.code, 0)
-        self.assertIn("maintainer-compass 0.2.0", stdout.getvalue())
+        self.assertIn("maintainer-compass 0.3.0", stdout.getvalue())
 
 
 if __name__ == "__main__":

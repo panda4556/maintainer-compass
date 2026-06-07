@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 import unittest
+import json
 
 from maintainer_compass.audit import AuditReport, CheckResult
-from maintainer_compass.report import render_json, render_markdown
+from maintainer_compass.report import render_json, render_markdown, render_sarif
 
 
 def _sample_report() -> AuditReport:
@@ -53,6 +54,21 @@ class ReportRenderingTests(unittest.TestCase):
         self.assertIn('"created_at": "2026-06-07T00:00:00+00:00"', rendered)
         self.assertIn('"github"', rendered)
         self.assertIn('"languages"', rendered)
+
+    def test_render_sarif_includes_failed_checks_as_results(self) -> None:
+        payload = json.loads(render_sarif(_sample_report()))
+        run = payload["runs"][0]
+
+        self.assertEqual(payload["version"], "2.1.0")
+        self.assertEqual(run["tool"]["driver"]["name"], "Maintainer Compass")
+        self.assertEqual(run["automationDetails"]["id"], "maintainer-compass/repository-health")
+        self.assertTrue(run["invocations"][0]["executionSuccessful"])
+        self.assertEqual(run["properties"]["percent"], 50)
+        self.assertEqual(len(run["tool"]["driver"]["rules"]), 2)
+        self.assertEqual(len(run["results"]), 1)
+        self.assertEqual(run["results"][0]["ruleId"], "ci")
+        self.assertEqual(run["results"][0]["level"], "warning")
+        self.assertEqual(run["results"][0]["locations"][0]["physicalLocation"]["artifactLocation"]["uri"], ".")
 
 
 if __name__ == "__main__":

@@ -10,6 +10,8 @@ should remain conservative because repositories can contain untrusted content.
   repository content.
 - GitHub metadata fetching is optional and limited to the public repository API.
 - Reports render fixed check metadata and paths from the local audit.
+- SARIF output reports failed maintenance checks as warnings and does not parse
+  repository file contents.
 
 ## Risks to Watch
 
@@ -20,6 +22,8 @@ should remain conservative because repositories can contain untrusted content.
   consent.
 - Report rendering that could accidentally include sensitive local paths or
   repository content.
+- Code scanning uploads that expose local report paths. Prefer running SARIF in
+  CI from the repository root.
 
 ## Future Requirements
 
@@ -28,4 +32,3 @@ should remain conservative because repositories can contain untrusted content.
 - Add tests for path traversal-like layouts before expanding file reads.
 - Clearly document what data an optional network or AI workflow sends.
 - Review new automation against supply-chain and prompt-injection risks.
-

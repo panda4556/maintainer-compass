@@ -52,4 +52,5 @@ changes.
 - The local audit avoids network access by default.
 - Recommendations should be specific enough to become an issue or pull request.
 - New checks should include tests for positive and negative cases.
-
+- SARIF output reports failed checks as warnings so maintainers can track them
+  in GitHub Code Scanning without treating every gap as a security bug.

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 - 2026-06-07
+
+- Added SARIF report output with `--format sarif`.
+- Added GitHub Code Scanning upload support in CI.
+- Added SARIF rendering tests and CLI output tests.
+- Updated usage, scoring, security design, README, and roadmap documentation for
+  SARIF workflows.
+
 ## 0.2.0 - 2026-06-07
 
 - Added `--fail-under` for CI quality gates.

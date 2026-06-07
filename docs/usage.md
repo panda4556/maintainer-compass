@@ -19,6 +19,22 @@ python -m maintainer_compass audit . --format json --output report.json
 JSON output includes the total score, category scores, detected languages,
 individual checks, and optional GitHub metadata.
 
+## SARIF for Code Scanning
+
+```bash
+python -m maintainer_compass audit . --format sarif --output maintainer-compass.sarif
+```
+
+SARIF output maps failed maintenance checks to warning results. This lets
+GitHub Actions upload repository health findings to Code Scanning:
+
+```yaml
+- run: python -m maintainer_compass audit . --format sarif --output maintainer-compass.sarif
+- uses: github/codeql-action/upload-sarif@v3
+  with:
+    sarif_file: maintainer-compass.sarif
+```
+
 ## Quality Gates
 
 Use `--fail-under` when you want CI to fail below a minimum score:
@@ -41,4 +57,3 @@ python -m maintainer_compass audit . \
 ```
 
 Set `GITHUB_TOKEN` or `GH_TOKEN` to use authenticated GitHub API requests.
-

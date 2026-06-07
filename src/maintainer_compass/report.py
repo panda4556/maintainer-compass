@@ -11,11 +11,50 @@ def render_report(report: AuditReport, output_format: str) -> str:
         return render_json(report)
     if output_format == "markdown":
         return render_markdown(report)
+    if output_format == "sarif":
+        return render_sarif(report)
     raise ValueError(f"Unsupported format: {output_format}")
 
 
 def render_json(report: AuditReport) -> str:
     return json.dumps(asdict(report), indent=2, sort_keys=True)
+
+
+def render_sarif(report: AuditReport) -> str:
+    rules = [_sarif_rule(check) for check in report.checks]
+    results = [_sarif_result(report, check) for check in report.checks if not check.passed]
+    payload = {
+        "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+        "version": "2.1.0",
+        "runs": [
+            {
+                "automationDetails": {
+                    "id": "maintainer-compass/repository-health",
+                },
+                "invocations": [
+                    {
+                        "executionSuccessful": True,
+                    }
+                ],
+                "tool": {
+                    "driver": {
+                        "name": "Maintainer Compass",
+                        "informationUri": "https://github.com/panda4556/maintainer-compass",
+                        "rules": rules,
+                    }
+                },
+                "results": results,
+                "properties": {
+                    "score": report.score,
+                    "maxScore": report.max_score,
+                    "percent": report.percent,
+                    "generatedAt": report.created_at,
+                    "detectedLanguages": report.languages,
+                },
+            }
+        ],
+    }
+    return json.dumps(payload, indent=2, sort_keys=True)
 
 
 def render_markdown(report: AuditReport) -> str:
@@ -90,3 +129,40 @@ def _check_lines(checks: list[CheckResult]) -> list[str]:
     lines.append("")
     return lines
 
+
+def _sarif_rule(check: CheckResult) -> dict[str, object]:
+    return {
+        "id": check.key,
+        "name": check.title,
+        "shortDescription": {"text": check.title},
+        "fullDescription": {"text": check.detail},
+        "help": {
+            "text": check.recommendation,
+            "markdown": check.recommendation,
+        },
+        "properties": {
+            "category": check.category,
+            "weight": check.weight,
+        },
+    }
+
+
+def _sarif_result(report: AuditReport, check: CheckResult) -> dict[str, object]:
+    return {
+        "ruleId": check.key,
+        "level": "warning",
+        "message": {"text": check.recommendation},
+        "locations": [
+            {
+                "physicalLocation": {
+                    "artifactLocation": {
+                        "uri": ".",
+                    },
+                }
+            }
+        ],
+        "properties": {
+            "category": check.category,
+            "weight": check.weight,
+        },
+    }

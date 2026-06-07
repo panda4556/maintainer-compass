@@ -6,7 +6,7 @@ open-source projects become easier to contribute to and safer to maintain.
 ## Near Term
 
 - Add more report rendering tests for Markdown and JSON output.
-- Add a SARIF export mode for repository health checks in GitHub Actions.
+- Improve SARIF grouping and baseline support for GitHub Code Scanning.
 - Add a release checklist generator from failed audit checks.
 - Improve GitHub metadata summaries without making network access required.
 - Add example repositories that demonstrate high, medium, and low scores.
@@ -32,4 +32,3 @@ local audit. Candidate workflows include:
 
 The core scanner should remain useful without API keys, network access, or paid
 services.
-

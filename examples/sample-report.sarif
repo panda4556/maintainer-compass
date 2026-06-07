@@ -1,0 +1,394 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "automationDetails": {
+        "id": "maintainer-compass/repository-health"
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "properties": {
+        "detectedLanguages": [
+          "Python"
+        ],
+        "generatedAt": "2026-06-07T14:57:28+00:00",
+        "maxScore": 104,
+        "percent": 100,
+        "score": 104
+      },
+      "results": [],
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/panda4556/maintainer-compass",
+          "name": "Maintainer Compass",
+          "rules": [
+            {
+              "fullDescription": {
+                "text": "A README helps users and contributors understand the project quickly."
+              },
+              "help": {
+                "markdown": "Add a README with purpose, install steps, usage, and contribution links.",
+                "text": "Add a README with purpose, install steps, usage, and contribution links."
+              },
+              "id": "readme",
+              "name": "README",
+              "properties": {
+                "category": "Onboarding",
+                "weight": 12
+              },
+              "shortDescription": {
+                "text": "README"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "A license makes reuse rights explicit."
+              },
+              "help": {
+                "markdown": "Add an OSI-approved license file.",
+                "text": "Add an OSI-approved license file."
+              },
+              "id": "license",
+              "name": "License",
+              "properties": {
+                "category": "Onboarding",
+                "weight": 8
+              },
+              "shortDescription": {
+                "text": "License"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "A contribution guide reduces repeated maintainer explanations."
+              },
+              "help": {
+                "markdown": "Add CONTRIBUTING.md with setup, tests, and pull request expectations.",
+                "text": "Add CONTRIBUTING.md with setup, tests, and pull request expectations."
+              },
+              "id": "contributing",
+              "name": "Contribution guide",
+              "properties": {
+                "category": "Onboarding",
+                "weight": 7
+              },
+              "shortDescription": {
+                "text": "Contribution guide"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "A code of conduct sets collaboration expectations."
+              },
+              "help": {
+                "markdown": "Add CODE_OF_CONDUCT.md for community behavior expectations.",
+                "text": "Add CODE_OF_CONDUCT.md for community behavior expectations."
+              },
+              "id": "code_of_conduct",
+              "name": "Code of conduct",
+              "properties": {
+                "category": "Governance",
+                "weight": 4
+              },
+              "shortDescription": {
+                "text": "Code of conduct"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "A security policy gives users a safe reporting path."
+              },
+              "help": {
+                "markdown": "Add SECURITY.md with private vulnerability reporting guidance.",
+                "text": "Add SECURITY.md with private vulnerability reporting guidance."
+              },
+              "id": "security",
+              "name": "Security policy",
+              "properties": {
+                "category": "Governance",
+                "weight": 7
+              },
+              "shortDescription": {
+                "text": "Security policy"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "A support policy tells users where to ask questions and where not to report secrets."
+              },
+              "help": {
+                "markdown": "Add SUPPORT.md with issue, discussion, and security contact guidance.",
+                "text": "Add SUPPORT.md with issue, discussion, and security contact guidance."
+              },
+              "id": "support",
+              "name": "Support policy",
+              "properties": {
+                "category": "Governance",
+                "weight": 3
+              },
+              "shortDescription": {
+                "text": "Support policy"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "Maintainer guidance makes triage, review, and release work repeatable."
+              },
+              "help": {
+                "markdown": "Add MAINTAINERS.md or docs/maintainer-guide.md with project operating notes.",
+                "text": "Add MAINTAINERS.md or docs/maintainer-guide.md with project operating notes."
+              },
+              "id": "maintainers",
+              "name": "Maintainer guide",
+              "properties": {
+                "category": "Governance",
+                "weight": 3
+              },
+              "shortDescription": {
+                "text": "Maintainer guide"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "A label taxonomy helps maintainers route issues and contributor work consistently."
+              },
+              "help": {
+                "markdown": "Add .github/labels.yml or document the label taxonomy.",
+                "text": "Add .github/labels.yml or document the label taxonomy."
+              },
+              "id": "labels",
+              "name": "Issue label taxonomy",
+              "properties": {
+                "category": "Governance",
+                "weight": 2
+              },
+              "shortDescription": {
+                "text": "Issue label taxonomy"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "Issue templates reduce triage time and collect reproducible details."
+              },
+              "help": {
+                "markdown": "Add bug and feature request templates under .github/ISSUE_TEMPLATE.",
+                "text": "Add bug and feature request templates under .github/ISSUE_TEMPLATE."
+              },
+              "id": "issue_templates",
+              "name": "Issue templates",
+              "properties": {
+                "category": "Governance",
+                "weight": 5
+              },
+              "shortDescription": {
+                "text": "Issue templates"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "A pull request template prompts contributors for tests and context."
+              },
+              "help": {
+                "markdown": "Add .github/pull_request_template.md with summary and test plan sections.",
+                "text": "Add .github/pull_request_template.md with summary and test plan sections."
+              },
+              "id": "pull_request_template",
+              "name": "Pull request template",
+              "properties": {
+                "category": "Governance",
+                "weight": 4
+              },
+              "shortDescription": {
+                "text": "Pull request template"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "CI catches regressions before maintainers review or release changes."
+              },
+              "help": {
+                "markdown": "Add a CI workflow that runs tests on pull requests.",
+                "text": "Add a CI workflow that runs tests on pull requests."
+              },
+              "id": "ci",
+              "name": "Continuous integration",
+              "properties": {
+                "category": "Automation",
+                "weight": 10
+              },
+              "shortDescription": {
+                "text": "Continuous integration"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "Dependency automation keeps projects current with less manual checking."
+              },
+              "help": {
+                "markdown": "Add Dependabot or Renovate configuration if dependencies need monitoring.",
+                "text": "Add Dependabot or Renovate configuration if dependencies need monitoring."
+              },
+              "id": "dependency_automation",
+              "name": "Dependency automation",
+              "properties": {
+                "category": "Automation",
+                "weight": 4
+              },
+              "shortDescription": {
+                "text": "Dependency automation"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "Tests make review safer and reduce maintainer uncertainty."
+              },
+              "help": {
+                "markdown": "Add tests or document how verification is performed.",
+                "text": "Add tests or document how verification is performed."
+              },
+              "id": "tests",
+              "name": "Tests",
+              "properties": {
+                "category": "Automation",
+                "weight": 8
+              },
+              "shortDescription": {
+                "text": "Tests"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "Package metadata helps users install and verify versions."
+              },
+              "help": {
+                "markdown": "Add package metadata for the primary ecosystem.",
+                "text": "Add package metadata for the primary ecosystem."
+              },
+              "id": "package_metadata",
+              "name": "Package metadata",
+              "properties": {
+                "category": "Release readiness",
+                "weight": 6
+              },
+              "shortDescription": {
+                "text": "Package metadata"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "A changelog makes upgrades and releases easier to audit."
+              },
+              "help": {
+                "markdown": "Add CHANGELOG.md or release notes.",
+                "text": "Add CHANGELOG.md or release notes."
+              },
+              "id": "changelog",
+              "name": "Changelog",
+              "properties": {
+                "category": "Release readiness",
+                "weight": 5
+              },
+              "shortDescription": {
+                "text": "Changelog"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "A release workflow reduces manual packaging mistakes."
+              },
+              "help": {
+                "markdown": "Add a release or publish workflow for tagged versions.",
+                "text": "Add a release or publish workflow for tagged versions."
+              },
+              "id": "release_workflow",
+              "name": "Release workflow",
+              "properties": {
+                "category": "Release readiness",
+                "weight": 4
+              },
+              "shortDescription": {
+                "text": "Release workflow"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "A roadmap helps contributors choose useful work without asking maintainers first."
+              },
+              "help": {
+                "markdown": "Add ROADMAP.md or docs/roadmap.md with near-term and future priorities.",
+                "text": "Add ROADMAP.md or docs/roadmap.md with near-term and future priorities."
+              },
+              "id": "roadmap",
+              "name": "Roadmap",
+              "properties": {
+                "category": "Onboarding",
+                "weight": 3
+              },
+              "shortDescription": {
+                "text": "Roadmap"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "A docs directory gives longer guidance a stable home."
+              },
+              "help": {
+                "markdown": "Add docs/ for deeper usage, architecture, or maintainer notes.",
+                "text": "Add docs/ for deeper usage, architecture, or maintainer notes."
+              },
+              "id": "docs",
+              "name": "Documentation directory",
+              "properties": {
+                "category": "Onboarding",
+                "weight": 4
+              },
+              "shortDescription": {
+                "text": "Documentation directory"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "Examples help users succeed without maintainer intervention."
+              },
+              "help": {
+                "markdown": "Add examples/ with realistic usage samples.",
+                "text": "Add examples/ with realistic usage samples."
+              },
+              "id": "examples",
+              "name": "Examples",
+              "properties": {
+                "category": "Onboarding",
+                "weight": 3
+              },
+              "shortDescription": {
+                "text": "Examples"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "Ignore rules prevent generated files from polluting reviews."
+              },
+              "help": {
+                "markdown": "Add .gitignore for build, cache, and environment artifacts.",
+                "text": "Add .gitignore for build, cache, and environment artifacts."
+              },
+              "id": "gitignore",
+              "name": "Git ignore rules",
+              "properties": {
+                "category": "Automation",
+                "weight": 2
+              },
+              "shortDescription": {
+                "text": "Git ignore rules"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

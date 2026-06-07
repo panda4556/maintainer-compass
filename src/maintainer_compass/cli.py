@@ -23,7 +23,7 @@ def build_parser() -> argparse.ArgumentParser:
     audit.add_argument("path", nargs="?", default=".", help="Repository path to audit.")
     audit.add_argument(
         "--format",
-        choices=["markdown", "json"],
+        choices=["markdown", "json", "sarif"],
         default="markdown",
         help="Report format.",
     )

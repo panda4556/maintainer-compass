@@ -40,7 +40,7 @@ README、许可证、贡献指南、安全策略、Issue/PR 模板、CI、测试
 
 - Local repository audit with no network required.
 - Optional GitHub metadata lookup for public repositories.
-- Markdown or JSON output for humans, bots, and GitHub Actions.
+- Markdown, JSON, or SARIF output for humans, bots, and GitHub Actions.
 - Weighted score across onboarding, governance, automation, and release
   readiness.
 - Actionable recommendations instead of vague pass/fail messages.
@@ -68,6 +68,12 @@ Generate JSON for automation:
 
 ```bash
 python -m maintainer_compass audit . --format json
+```
+
+Generate SARIF for GitHub Code Scanning or security dashboards:
+
+```bash
+python -m maintainer_compass audit . --format sarif --output maintainer-compass.sarif
 ```
 
 Fail CI if a repository falls below a score threshold:
@@ -114,10 +120,16 @@ jobs:
           python-version: "3.12"
       - run: python -m pip install -e .
       - run: python -m maintainer_compass audit . --format markdown --output maintainer-compass-report.md
+      - run: python -m maintainer_compass audit . --format sarif --output maintainer-compass.sarif
+      - uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: maintainer-compass.sarif
       - uses: actions/upload-artifact@v4
         with:
           name: maintainer-compass-report
-          path: maintainer-compass-report.md
+          path: |
+            maintainer-compass-report.md
+            maintainer-compass.sarif
 ```
 
 ## What gets checked
@@ -136,9 +148,8 @@ maintenance improvements.
 
 ## Roadmap
 
-See [ROADMAP.md](ROADMAP.md) for planned work, including SARIF export, score
-history, ecosystem-specific checks, and optional AI-assisted maintainer
-workflows.
+See [ROADMAP.md](ROADMAP.md) for planned work, including score history,
+ecosystem-specific checks, and optional AI-assisted maintainer workflows.
 
 ## Documentation
 
