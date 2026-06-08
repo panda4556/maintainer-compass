@@ -46,6 +46,8 @@ class ReportRenderingTests(unittest.TestCase):
         self.assertIn("# Maintainer Compass Report", rendered)
         self.assertIn("Score: **10/20** (50%)", rendered)
         self.assertIn("## GitHub metadata", rendered)
+        self.assertIn("| Automation | 0/10 | 0% |", rendered)
+        self.assertIn("| Onboarding | 10/10 | 100% |", rendered)
         self.assertIn("**Continuous integration**: Add CI.", rendered)
 
     def test_render_json_is_stable_and_sorted(self) -> None:

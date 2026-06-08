@@ -78,7 +78,7 @@ class CliTests(unittest.TestCase):
             main(["--version"])
 
         self.assertEqual(raised.exception.code, 0)
-        self.assertIn("maintainer-compass 0.3.0", stdout.getvalue())
+        self.assertIn("maintainer-compass 0.4.0", stdout.getvalue())
 
 
 if __name__ == "__main__":

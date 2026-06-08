@@ -6,12 +6,12 @@ Score: 86/100
 
 ## Category scores
 
-| Category | Score |
-| --- | ---: |
-| Onboarding | 34/37 |
-| Governance | 23/26 |
-| Automation | 22/24 |
-| Release readiness | 15/15 |
+| Category | Score | Percent |
+| --- | ---: | ---: |
+| Onboarding | 34/37 | 92% |
+| Governance | 23/26 | 88% |
+| Automation | 22/24 | 92% |
+| Release readiness | 15/15 | 100% |
 
 ## Top recommendations
 

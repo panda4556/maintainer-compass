@@ -46,6 +46,10 @@ python -m maintainer_compass audit . --fail-under 80
 The command still prints the report, then exits with status `1` if the
 percentage is below the threshold.
 
+Markdown reports include category percentages so maintainers can see whether a
+repository is mainly missing onboarding, governance, automation, or release
+readiness work.
+
 ## GitHub Metadata
 
 Local checks do not require network access. Public GitHub metadata is optional:

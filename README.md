@@ -46,6 +46,7 @@ README、许可证、贡献指南、安全策略、Issue/PR 模板、CI、测试
 - Actionable recommendations instead of vague pass/fail messages.
 - CI-friendly quality gate with `--fail-under`.
 - Maintainer-focused docs for support, triage, releases, and roadmap planning.
+- Package build validation and typed package metadata.
 - Standard library only. No runtime dependencies.
 
 ## Quick start
@@ -157,6 +158,7 @@ ecosystem-specific checks, and optional AI-assisted maintainer workflows.
 - [Scoring model](docs/scoring.md)
 - [AI-assisted maintainer workflows](docs/ai-maintainer-workflows.md)
 - [Security design notes](docs/security-design.md)
+- [Packaging](docs/packaging.md)
 - [Claude for OSS application notes](docs/claude-for-oss-application.md)
 - [Maintainer guide](MAINTAINERS.md)
 - [Support policy](SUPPORT.md)

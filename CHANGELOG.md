@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.0 - 2026-06-08
+
+- Added category percentage columns to Markdown reports.
+- Added `py.typed` package marker for typed package consumers.
+- Added package build validation to CI.
+- Added packaging documentation.
+
 ## 0.3.0 - 2026-06-07
 
 - Added SARIF report output with `--format sarif`.

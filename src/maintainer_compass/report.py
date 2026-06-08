@@ -99,9 +99,10 @@ def _github_lines(github: dict[str, object]) -> list[str]:
 
 
 def _category_lines(report: AuditReport) -> list[str]:
-    lines = ["## Category scores", "", "| Category | Score |", "| --- | ---: |"]
+    lines = ["## Category scores", "", "| Category | Score | Percent |", "| --- | ---: | ---: |"]
     for category, scores in sorted(report.category_scores.items()):
-        lines.append(f"| {category} | {scores['score']}/{scores['max_score']} |")
+        percent = _score_percent(scores["score"], scores["max_score"])
+        lines.append(f"| {category} | {scores['score']}/{scores['max_score']} | {percent}% |")
     lines.append("")
     return lines
 
@@ -166,3 +167,9 @@ def _sarif_result(report: AuditReport, check: CheckResult) -> dict[str, object]:
             "weight": check.weight,
         },
     }
+
+
+def _score_percent(score: int, max_score: int) -> int:
+    if max_score == 0:
+        return 0
+    return round((score / max_score) * 100)
